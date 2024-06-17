@@ -13,9 +13,9 @@ class TravelCalculatePremiumServiceImplTest {
         TravelCalculatePremiumRequest request = new TravelCalculatePremiumRequest("Ivan",
                 "Petrov", new Date(), new Date());
 
-        TravelCalculatePremiumServiceImpl example = new TravelCalculatePremiumServiceImpl();
+        TravelCalculatePremiumServiceImpl response = new TravelCalculatePremiumServiceImpl();
 
-        Assertions.assertEquals(request.getPersonFirstName(), example.calculatePremium(request).getPersonFirstName());
+        Assertions.assertEquals(request.getPersonFirstName(), response.calculatePremium(request).getPersonFirstName());
     }
 
     @Test
@@ -23,9 +23,9 @@ class TravelCalculatePremiumServiceImplTest {
         TravelCalculatePremiumRequest request = new TravelCalculatePremiumRequest("Ivan",
                 "Petrov", new Date(), new Date());
 
-        TravelCalculatePremiumServiceImpl example = new TravelCalculatePremiumServiceImpl();
+        TravelCalculatePremiumServiceImpl response = new TravelCalculatePremiumServiceImpl();
 
-        Assertions.assertEquals(request.getPersonLastName(), example.calculatePremium(request).getPersonLastName());
+        Assertions.assertEquals(request.getPersonLastName(), response.calculatePremium(request).getPersonLastName());
     }
 
     @Test
@@ -33,9 +33,9 @@ class TravelCalculatePremiumServiceImplTest {
         TravelCalculatePremiumRequest request = new TravelCalculatePremiumRequest("Ivan",
                 "Petrov", new Date(), new Date());
 
-        TravelCalculatePremiumServiceImpl example = new TravelCalculatePremiumServiceImpl();
+        TravelCalculatePremiumServiceImpl response = new TravelCalculatePremiumServiceImpl();
 
-        Assertions.assertEquals(request.getAgreementDateFrom(), example.calculatePremium(request).getAgreementDateFrom());
+        Assertions.assertEquals(request.getAgreementDateFrom(), response.calculatePremium(request).getAgreementDateFrom());
     }
 
     @Test
@@ -43,8 +43,8 @@ class TravelCalculatePremiumServiceImplTest {
         TravelCalculatePremiumRequest request = new TravelCalculatePremiumRequest("Ivan",
                 "Petrov", new Date(), new Date());
 
-        TravelCalculatePremiumServiceImpl example = new TravelCalculatePremiumServiceImpl();
+        TravelCalculatePremiumServiceImpl response = new TravelCalculatePremiumServiceImpl();
 
-        Assertions.assertEquals(request.getAgreementDateTo(), example.calculatePremium(request).getAgreementDateTo());
+        Assertions.assertEquals(request.getAgreementDateTo(), response.calculatePremium(request).getAgreementDateTo());
     }
 }
