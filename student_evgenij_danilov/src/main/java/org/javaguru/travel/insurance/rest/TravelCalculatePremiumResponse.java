@@ -20,7 +20,6 @@ public class TravelCalculatePremiumResponse {
         this.personLastName = personLastName;
         this.agreementDateFrom = agreementDateFrom;
         this.agreementDateTo = agreementDateTo;
-        calculateAgreementPrice();
     }
 
     public String getPersonFirstName() {
@@ -44,7 +43,6 @@ public class TravelCalculatePremiumResponse {
     }
 
     public void setAgreementDateFrom(Date agreementDateFrom) {
-        calculateAgreementPrice();
         this.agreementDateFrom = agreementDateFrom;
     }
 
@@ -53,7 +51,6 @@ public class TravelCalculatePremiumResponse {
     }
 
     public void setAgreementDateTo(Date agreementDateTo) {
-        calculateAgreementPrice();
         this.agreementDateTo = agreementDateTo;
     }
 
