@@ -5,6 +5,7 @@ import org.javaguru.travel.insurance.rest.TravelCalculatePremiumResponse;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
+import java.util.concurrent.TimeUnit;
 
 @Component
 class TravelCalculatePremiumServiceImpl implements TravelCalculatePremiumService {
@@ -13,9 +14,13 @@ class TravelCalculatePremiumServiceImpl implements TravelCalculatePremiumService
         TravelCalculatePremiumResponse response = new TravelCalculatePremiumResponse(request.getPersonFirstName(), request.getPersonLastName(),
                 request.getAgreementDateFrom(), request.getAgreementDateTo());
 
-        response.setAgreementPrice(BigDecimal.valueOf(response.getAgreementDateTo().getTime()
-                - response.getAgreementDateFrom().getTime()));
+        response.setAgreementPrice(calculateAgreementPrice(response));
 
         return response;
+    }
+
+    private BigDecimal calculateAgreementPrice(TravelCalculatePremiumResponse response){
+        return new BigDecimal(TimeUnit.DAYS.convert(response.getAgreementDateTo().getTime()
+                - response.getAgreementDateFrom().getTime(), TimeUnit.MILLISECONDS));
     }
 }

@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 class TravelCalculatePremiumServiceImplTest {
 
@@ -56,7 +57,8 @@ class TravelCalculatePremiumServiceImplTest {
 
         TravelCalculatePremiumServiceImpl response = new TravelCalculatePremiumServiceImpl();
 
-        BigDecimal bigDecimal = new BigDecimal(86400000);
+        BigDecimal bigDecimal = new BigDecimal(TimeUnit.DAYS.convert(new Date(2023, 10, 28).getTime()
+                - new Date(2023, 10, 27).getTime(), TimeUnit.MILLISECONDS));
 
         Assertions.assertEquals(bigDecimal, response.calculatePremium(request).getAgreementPrice());
     }
