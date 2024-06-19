@@ -8,7 +8,8 @@ import java.util.Date;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class TravelCalculatePremiumServiceImplAIOneTest {
-    private final TravelCalculatePremiumService service = new TravelCalculatePremiumServiceImpl();
+    private DateTimeService dateTimeService = new DateTimeService();
+    private final TravelCalculatePremiumService service = new TravelCalculatePremiumServiceImpl(dateTimeService);
 
     @Test
     void testCalculatePremium() {

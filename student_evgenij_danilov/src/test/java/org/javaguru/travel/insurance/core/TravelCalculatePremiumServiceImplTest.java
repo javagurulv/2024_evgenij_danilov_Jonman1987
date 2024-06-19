@@ -1,6 +1,7 @@
 package org.javaguru.travel.insurance.core;
 
 import org.javaguru.travel.insurance.rest.TravelCalculatePremiumRequest;
+import org.javaguru.travel.insurance.rest.TravelCalculatePremiumResponse;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -13,53 +14,61 @@ class TravelCalculatePremiumServiceImplTest {
     @Test
     public void testGetPersonFirstName() {
         TravelCalculatePremiumRequest request = new TravelCalculatePremiumRequest("Ivan",
-                "Petrov", new Date(), new Date());
+                "Petrov", new Date(2023, 10, 27), new Date(2023, 10, 28));
+        DateTimeService dateTimeService = new DateTimeService();
+        TravelCalculatePremiumServiceImpl service = new TravelCalculatePremiumServiceImpl(dateTimeService);
 
-        TravelCalculatePremiumServiceImpl response = new TravelCalculatePremiumServiceImpl();
+        TravelCalculatePremiumResponse response = service.calculatePremium(request);
 
-        Assertions.assertEquals(request.getPersonFirstName(), response.calculatePremium(request).getPersonFirstName());
+        Assertions.assertEquals(response.getPersonFirstName(), request.getPersonFirstName());
     }
 
     @Test
     public void testGetPersonLastName() {
         TravelCalculatePremiumRequest request = new TravelCalculatePremiumRequest("Ivan",
-                "Petrov", new Date(), new Date());
+                "Petrov", new Date(2023, 10, 27), new Date(2023, 10, 28));
+        DateTimeService dateTimeService = new DateTimeService();
+        TravelCalculatePremiumServiceImpl service = new TravelCalculatePremiumServiceImpl(dateTimeService);
 
-        TravelCalculatePremiumServiceImpl response = new TravelCalculatePremiumServiceImpl();
+        TravelCalculatePremiumResponse response = service.calculatePremium(request);
 
-        Assertions.assertEquals(request.getPersonLastName(), response.calculatePremium(request).getPersonLastName());
+        Assertions.assertEquals(response.getPersonLastName(), request.getPersonLastName());
     }
 
     @Test
     public void testGetAgreementDateFrom() {
         TravelCalculatePremiumRequest request = new TravelCalculatePremiumRequest("Ivan",
-                "Petrov", new Date(), new Date());
+                "Petrov", new Date(2023, 10, 27), new Date(2023, 10, 28));
+        DateTimeService dateTimeService = new DateTimeService();
+        TravelCalculatePremiumServiceImpl service = new TravelCalculatePremiumServiceImpl(dateTimeService);
 
-        TravelCalculatePremiumServiceImpl response = new TravelCalculatePremiumServiceImpl();
+        TravelCalculatePremiumResponse response = service.calculatePremium(request);
 
-        Assertions.assertEquals(request.getAgreementDateFrom(), response.calculatePremium(request).getAgreementDateFrom());
+        Assertions.assertEquals(response.getAgreementDateFrom(), request.getAgreementDateFrom());
     }
 
     @Test
     public void testGetAgreementDateTo() {
         TravelCalculatePremiumRequest request = new TravelCalculatePremiumRequest("Ivan",
-                "Petrov", new Date(), new Date());
+                "Petrov", new Date(2023, 10, 27), new Date(2023, 10, 28));
+        DateTimeService dateTimeService = new DateTimeService();
+        TravelCalculatePremiumServiceImpl service = new TravelCalculatePremiumServiceImpl(dateTimeService);
 
-        TravelCalculatePremiumServiceImpl response = new TravelCalculatePremiumServiceImpl();
+        TravelCalculatePremiumResponse response = service.calculatePremium(request);
 
-        Assertions.assertEquals(request.getAgreementDateTo(), response.calculatePremium(request).getAgreementDateTo());
+        Assertions.assertEquals(response.getAgreementDateTo(), request.getAgreementDateTo());
     }
 
     @Test
     public void testGetAgreementPrice() {
         TravelCalculatePremiumRequest request = new TravelCalculatePremiumRequest("Ivan",
                 "Petrov", new Date(2023, 10, 27), new Date(2023, 10, 28));
+        DateTimeService dateTimeService = new DateTimeService();
+        TravelCalculatePremiumServiceImpl service = new TravelCalculatePremiumServiceImpl(dateTimeService);
 
-        TravelCalculatePremiumServiceImpl response = new TravelCalculatePremiumServiceImpl();
+        TravelCalculatePremiumResponse response = service.calculatePremium(request);
+        response.setAgreementPrice(new BigDecimal(service.calculateDaysCount(request)));
 
-        BigDecimal bigDecimal = new BigDecimal(TimeUnit.DAYS.convert(new Date(2023, 10, 28).getTime()
-                - new Date(2023, 10, 27).getTime(), TimeUnit.MILLISECONDS));
-
-        Assertions.assertEquals(bigDecimal, response.calculatePremium(request).getAgreementPrice());
+        Assertions.assertEquals(response.getAgreementPrice(), new BigDecimal(1));
     }
 }

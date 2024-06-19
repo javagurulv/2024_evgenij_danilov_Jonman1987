@@ -9,18 +9,23 @@ import java.util.concurrent.TimeUnit;
 
 @Component
 class TravelCalculatePremiumServiceImpl implements TravelCalculatePremiumService {
+    private DateTimeService dateTimeService;
+
+    public TravelCalculatePremiumServiceImpl(DateTimeService dateTimeService){
+        this.dateTimeService = dateTimeService;
+    }
+
     @Override
     public TravelCalculatePremiumResponse calculatePremium(TravelCalculatePremiumRequest request) {
         TravelCalculatePremiumResponse response = new TravelCalculatePremiumResponse(request.getPersonFirstName(), request.getPersonLastName(),
                 request.getAgreementDateFrom(), request.getAgreementDateTo());
 
-        response.setAgreementPrice(calculateAgreementPrice(response));
+        response.setAgreementPrice(new BigDecimal(calculateDaysCount(request)));
 
         return response;
     }
 
-    private BigDecimal calculateAgreementPrice(TravelCalculatePremiumResponse response){
-        return new BigDecimal(TimeUnit.DAYS.convert(response.getAgreementDateTo().getTime()
-                - response.getAgreementDateFrom().getTime(), TimeUnit.MILLISECONDS));
+    public long calculateDaysCount(TravelCalculatePremiumRequest request){
+        return dateTimeService.calculateDaysCount(request.getAgreementDateFrom(), request.getAgreementDateTo());
     }
 }
