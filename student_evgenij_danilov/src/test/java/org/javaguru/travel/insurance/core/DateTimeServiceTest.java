@@ -20,7 +20,7 @@ public class DateTimeServiceTest {
     @Test
     public void setAgreementPriceTest(){
         DateTimeService dateTimeService = new DateTimeService();
-        dateTimeService.setDaysCount(1);
+        dateTimeService.setDaysCount(1L);
 
         Assertions.assertEquals(dateTimeService.getDaysCount(), 1);
     }
