@@ -1,0 +1,22 @@
+**Задание**
+Использовать Mockito в тестировании
+
+**Краткое описание процесса выполнения**
+Использование метода mock
+
+**Что применил/использовал, чему научился в процессе выполнения задания?**
+mock(DateTimeService.class)
+
+**Сколько потратил времени на выполнение задачи?**
+10 минуты
+
+**Как убедился в том, что задание выполнено правильно?**
+На основании тестов
+
+**Комментарий в свободной форме**
+Узнать про warnings
+WARNING: A Java agent has been loaded dynamically (C:\Users\Jonma\.gradle\caches\modules-2\files-2.1\net.bytebuddy\byte-buddy-agent\1.14.9\dfb8707031008535048bad2b69735f46d0b6c5e5\byte-buddy-agent-1.14.9.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+OpenJDK 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended

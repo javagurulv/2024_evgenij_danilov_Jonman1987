@@ -9,13 +9,18 @@ import java.math.BigDecimal;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+
 class TravelCalculatePremiumServiceImplTest {
 
     @Test
     public void testGetPersonFirstName() {
         TravelCalculatePremiumRequest request = new TravelCalculatePremiumRequest("Ivan",
                 "Petrov", new Date(2023, 10, 27), new Date(2023, 10, 28));
-        DateTimeService dateTimeService = new DateTimeService();
+        DateTimeService dateTimeService = mock(DateTimeService.class);
+        when(dateTimeService.calculateDaysCount(new Date(2023, 10, 27), new Date(2023, 10, 28)))
+                .thenReturn(1L);
         TravelCalculatePremiumServiceImpl service = new TravelCalculatePremiumServiceImpl(dateTimeService);
 
         TravelCalculatePremiumResponse response = service.calculatePremium(request);
@@ -27,7 +32,9 @@ class TravelCalculatePremiumServiceImplTest {
     public void testGetPersonLastName() {
         TravelCalculatePremiumRequest request = new TravelCalculatePremiumRequest("Ivan",
                 "Petrov", new Date(2023, 10, 27), new Date(2023, 10, 28));
-        DateTimeService dateTimeService = new DateTimeService();
+        DateTimeService dateTimeService = mock(DateTimeService.class);
+        when(dateTimeService.calculateDaysCount(new Date(2023, 10, 27), new Date(2023, 10, 28)))
+                .thenReturn(1L);
         TravelCalculatePremiumServiceImpl service = new TravelCalculatePremiumServiceImpl(dateTimeService);
 
         TravelCalculatePremiumResponse response = service.calculatePremium(request);
@@ -39,7 +46,9 @@ class TravelCalculatePremiumServiceImplTest {
     public void testGetAgreementDateFrom() {
         TravelCalculatePremiumRequest request = new TravelCalculatePremiumRequest("Ivan",
                 "Petrov", new Date(2023, 10, 27), new Date(2023, 10, 28));
-        DateTimeService dateTimeService = new DateTimeService();
+        DateTimeService dateTimeService = mock(DateTimeService.class);
+        when(dateTimeService.calculateDaysCount(new Date(2023, 10, 27), new Date(2023, 10, 28)))
+                .thenReturn(1L);
         TravelCalculatePremiumServiceImpl service = new TravelCalculatePremiumServiceImpl(dateTimeService);
 
         TravelCalculatePremiumResponse response = service.calculatePremium(request);
@@ -51,7 +60,9 @@ class TravelCalculatePremiumServiceImplTest {
     public void testGetAgreementDateTo() {
         TravelCalculatePremiumRequest request = new TravelCalculatePremiumRequest("Ivan",
                 "Petrov", new Date(2023, 10, 27), new Date(2023, 10, 28));
-        DateTimeService dateTimeService = new DateTimeService();
+        DateTimeService dateTimeService = mock(DateTimeService.class);
+        when(dateTimeService.calculateDaysCount(new Date(2023, 10, 27), new Date(2023, 10, 28)))
+                .thenReturn(1L);
         TravelCalculatePremiumServiceImpl service = new TravelCalculatePremiumServiceImpl(dateTimeService);
 
         TravelCalculatePremiumResponse response = service.calculatePremium(request);
@@ -63,7 +74,9 @@ class TravelCalculatePremiumServiceImplTest {
     public void testGetAgreementPrice() {
         TravelCalculatePremiumRequest request = new TravelCalculatePremiumRequest("Ivan",
                 "Petrov", new Date(2023, 10, 27), new Date(2023, 10, 28));
-        DateTimeService dateTimeService = new DateTimeService();
+        DateTimeService dateTimeService = mock(DateTimeService.class);
+        when(dateTimeService.calculateDaysCount(new Date(2023, 10, 27), new Date(2023, 10, 28)))
+                .thenReturn(1L);
         TravelCalculatePremiumServiceImpl service = new TravelCalculatePremiumServiceImpl(dateTimeService);
 
         TravelCalculatePremiumResponse response = service.calculatePremium(request);
