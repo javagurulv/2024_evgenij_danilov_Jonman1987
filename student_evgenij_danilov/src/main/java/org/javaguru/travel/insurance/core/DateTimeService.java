@@ -1,9 +1,12 @@
 package org.javaguru.travel.insurance.core;
 
 import org.javaguru.travel.insurance.rest.TravelCalculatePremiumResponse;
+import org.springframework.stereotype.Component;
 
+import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
+@Component
 public class DateTimeService {
     long daysCount;
 
@@ -11,8 +14,8 @@ public class DateTimeService {
 
     }
 
-    public DateTimeService(TravelCalculatePremiumResponse response){
-        daysCount = calculateDaysCount(response);
+    public DateTimeService(Date agreementDateFrom, Date agreementDateTo){
+        daysCount = calculateDaysCount(agreementDateFrom, agreementDateTo);
     }
 
     public long getDaysCount(){
@@ -23,9 +26,9 @@ public class DateTimeService {
         this.daysCount = daysCount;
     }
 
-    public long calculateDaysCount(TravelCalculatePremiumResponse response){
-        daysCount = TimeUnit.DAYS.convert(response.getAgreementDateTo().getTime()
-                - response.getAgreementDateFrom().getTime(), TimeUnit.MILLISECONDS);
+    public long calculateDaysCount(Date agreementDateFrom, Date agreementDateTo){
+        daysCount = TimeUnit.DAYS.convert(agreementDateTo.getTime()
+                - agreementDateFrom.getTime(), TimeUnit.MILLISECONDS);
 
         return daysCount; // Сделал возвращаемое значение, чтобы можно было увидеть результат калькуляции
     }

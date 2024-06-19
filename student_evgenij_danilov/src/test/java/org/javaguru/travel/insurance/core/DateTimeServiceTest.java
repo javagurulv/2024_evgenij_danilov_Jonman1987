@@ -1,6 +1,5 @@
 package org.javaguru.travel.insurance.core;
 
-import org.javaguru.travel.insurance.rest.TravelCalculatePremiumResponse;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -9,10 +8,7 @@ import java.util.Date;
 public class DateTimeServiceTest {
     @Test
     public void getAgreementPriceTest(){
-        TravelCalculatePremiumResponse response = new TravelCalculatePremiumResponse("Ivan",
-                "Petrov", new Date(2023, 10, 27), new Date(2023, 10, 28));
-
-        DateTimeService dateTimeService = new DateTimeService(response);
+        DateTimeService dateTimeService = new DateTimeService(new Date(2023, 10, 27), new Date(2023, 10, 28));
 
         Assertions.assertEquals(dateTimeService.getDaysCount(), 1);
     }
@@ -27,11 +23,8 @@ public class DateTimeServiceTest {
 
     @Test
     public void calculateAgreementPriceTest(){
-        TravelCalculatePremiumResponse response = new TravelCalculatePremiumResponse("Ivan",
-                "Petrov", new Date(2023, 10, 27), new Date(2023, 10, 28));
-
         DateTimeService dateTimeService = new DateTimeService();
-        dateTimeService.calculateDaysCount(response);
+        dateTimeService.calculateDaysCount(new Date(2023, 10, 27), new Date(2023, 10, 28));
 
         Assertions.assertEquals(dateTimeService.getDaysCount(), 1);
     }
