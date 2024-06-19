@@ -31,7 +31,7 @@ public class DateTimeServiceTest {
                 "Petrov", new Date(2023, 10, 27), new Date(2023, 10, 28));
 
         DateTimeService dateTimeService = new DateTimeService();
-        dateTimeService.calculateAgreementPrice(response);
+        dateTimeService.calculateDaysCount(response);
 
         Assertions.assertEquals(dateTimeService.getDaysCount(), 1);
     }

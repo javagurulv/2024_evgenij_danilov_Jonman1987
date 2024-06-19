@@ -12,7 +12,7 @@ public class DateTimeService {
     }
 
     public DateTimeService(TravelCalculatePremiumResponse response){
-        daysCount = calculateAgreementPrice(response);
+        daysCount = calculateDaysCount(response);
     }
 
     public long getDaysCount(){
@@ -23,7 +23,7 @@ public class DateTimeService {
         this.daysCount = daysCount;
     }
 
-    public long calculateAgreementPrice(TravelCalculatePremiumResponse response){
+    public long calculateDaysCount(TravelCalculatePremiumResponse response){
         daysCount = TimeUnit.DAYS.convert(response.getAgreementDateTo().getTime()
                 - response.getAgreementDateFrom().getTime(), TimeUnit.MILLISECONDS);
 
