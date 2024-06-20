@@ -4,25 +4,33 @@ import org.javaguru.travel.insurance.rest.TravelCalculatePremiumRequest;
 import org.javaguru.travel.insurance.rest.TravelCalculatePremiumResponse;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
+import org.junit.jupiter.api.BeforeEach;
 import java.math.BigDecimal;
 import java.util.Date;
-import java.util.concurrent.TimeUnit;
-
-import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
+@ExtendWith(MockitoExtension.class)
 class TravelCalculatePremiumServiceImplTest {
+    @Mock
+    private DateTimeService dateTimeService;
 
+    @InjectMocks
+    private TravelCalculatePremiumServiceImpl service;
+
+    private TravelCalculatePremiumRequest request;
+
+    @BeforeEach
+    public void setUp() {
+        request = new TravelCalculatePremiumRequest("Ivan",
+                "Petrov", new Date(2023, 10, 27), new Date(2023, 10, 28));
+        when(dateTimeService.calculateDaysCount(request.getAgreementDateFrom(), request.getAgreementDateTo())).thenReturn(1L);
+    }
     @Test
     public void testGetPersonFirstName() {
-        TravelCalculatePremiumRequest request = new TravelCalculatePremiumRequest("Ivan",
-                "Petrov", new Date(2023, 10, 27), new Date(2023, 10, 28));
-        DateTimeService dateTimeService = mock(DateTimeService.class);
-        when(dateTimeService.calculateDaysCount(new Date(2023, 10, 27), new Date(2023, 10, 28)))
-                .thenReturn(1L);
-        TravelCalculatePremiumServiceImpl service = new TravelCalculatePremiumServiceImpl(dateTimeService);
-
         TravelCalculatePremiumResponse response = service.calculatePremium(request);
 
         Assertions.assertEquals(response.getPersonFirstName(), request.getPersonFirstName());
@@ -30,13 +38,6 @@ class TravelCalculatePremiumServiceImplTest {
 
     @Test
     public void testGetPersonLastName() {
-        TravelCalculatePremiumRequest request = new TravelCalculatePremiumRequest("Ivan",
-                "Petrov", new Date(2023, 10, 27), new Date(2023, 10, 28));
-        DateTimeService dateTimeService = mock(DateTimeService.class);
-        when(dateTimeService.calculateDaysCount(new Date(2023, 10, 27), new Date(2023, 10, 28)))
-                .thenReturn(1L);
-        TravelCalculatePremiumServiceImpl service = new TravelCalculatePremiumServiceImpl(dateTimeService);
-
         TravelCalculatePremiumResponse response = service.calculatePremium(request);
 
         Assertions.assertEquals(response.getPersonLastName(), request.getPersonLastName());
@@ -44,13 +45,6 @@ class TravelCalculatePremiumServiceImplTest {
 
     @Test
     public void testGetAgreementDateFrom() {
-        TravelCalculatePremiumRequest request = new TravelCalculatePremiumRequest("Ivan",
-                "Petrov", new Date(2023, 10, 27), new Date(2023, 10, 28));
-        DateTimeService dateTimeService = mock(DateTimeService.class);
-        when(dateTimeService.calculateDaysCount(new Date(2023, 10, 27), new Date(2023, 10, 28)))
-                .thenReturn(1L);
-        TravelCalculatePremiumServiceImpl service = new TravelCalculatePremiumServiceImpl(dateTimeService);
-
         TravelCalculatePremiumResponse response = service.calculatePremium(request);
 
         Assertions.assertEquals(response.getAgreementDateFrom(), request.getAgreementDateFrom());
@@ -58,13 +52,6 @@ class TravelCalculatePremiumServiceImplTest {
 
     @Test
     public void testGetAgreementDateTo() {
-        TravelCalculatePremiumRequest request = new TravelCalculatePremiumRequest("Ivan",
-                "Petrov", new Date(2023, 10, 27), new Date(2023, 10, 28));
-        DateTimeService dateTimeService = mock(DateTimeService.class);
-        when(dateTimeService.calculateDaysCount(new Date(2023, 10, 27), new Date(2023, 10, 28)))
-                .thenReturn(1L);
-        TravelCalculatePremiumServiceImpl service = new TravelCalculatePremiumServiceImpl(dateTimeService);
-
         TravelCalculatePremiumResponse response = service.calculatePremium(request);
 
         Assertions.assertEquals(response.getAgreementDateTo(), request.getAgreementDateTo());
@@ -72,13 +59,6 @@ class TravelCalculatePremiumServiceImplTest {
 
     @Test
     public void testGetAgreementPrice() {
-        TravelCalculatePremiumRequest request = new TravelCalculatePremiumRequest("Ivan",
-                "Petrov", new Date(2023, 10, 27), new Date(2023, 10, 28));
-        DateTimeService dateTimeService = mock(DateTimeService.class);
-        when(dateTimeService.calculateDaysCount(new Date(2023, 10, 27), new Date(2023, 10, 28)))
-                .thenReturn(1L);
-        TravelCalculatePremiumServiceImpl service = new TravelCalculatePremiumServiceImpl(dateTimeService);
-
         TravelCalculatePremiumResponse response = service.calculatePremium(request);
         response.setAgreementPrice(new BigDecimal(service.calculateDaysCount(request)));
 
