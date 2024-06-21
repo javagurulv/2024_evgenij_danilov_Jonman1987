@@ -17,8 +17,11 @@ class TravelCalculatePremiumServiceImpl implements TravelCalculatePremiumService
 
     @Override
     public TravelCalculatePremiumResponse calculatePremium(TravelCalculatePremiumRequest request) {
-        TravelCalculatePremiumResponse response = new TravelCalculatePremiumResponse(request.getPersonFirstName(), request.getPersonLastName(),
-                request.getAgreementDateFrom(), request.getAgreementDateTo());
+        TravelCalculatePremiumResponse response = new TravelCalculatePremiumResponse();
+        response.setAgreementDateFrom(request.getAgreementDateFrom());
+        response.setAgreementDateTo(request.getAgreementDateTo());
+        response.setPersonFirstName(request.getPersonFirstName());
+        response.setPersonLastName(request.getPersonLastName());
 
         response.setAgreementPrice(new BigDecimal(calculateDaysCount(request)));
 
