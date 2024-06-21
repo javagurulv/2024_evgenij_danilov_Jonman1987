@@ -20,7 +20,6 @@ public class TravelCalculatePremiumValidateRequestTest {
     public void firstNameIsPresent(){
         request = mock(TravelCalculatePremiumRequest.class);
         when(request.getPersonFirstName()).thenReturn("Ivan");
-        when(request.getPersonLastName()).thenReturn("Petrov");
 
         validator = new TravelCalculatePremiumRequestValidator();
 
@@ -31,7 +30,6 @@ public class TravelCalculatePremiumValidateRequestTest {
     public void firstNameIsNull(){
         request = mock(TravelCalculatePremiumRequest.class);
         when(request.getPersonFirstName()).thenReturn(null);
-        when(request.getPersonLastName()).thenReturn("Petrov");
 
         validator = new TravelCalculatePremiumRequestValidator();
         List<ValidationError> errors = validator.validate(request);
@@ -44,7 +42,6 @@ public class TravelCalculatePremiumValidateRequestTest {
     public void firstNameIsEmpty(){
         request = mock(TravelCalculatePremiumRequest.class);
         when(request.getPersonFirstName()).thenReturn("");
-        when(request.getPersonLastName()).thenReturn("");
 
         validator = new TravelCalculatePremiumRequestValidator();
         List<ValidationError> errors = validator.validate(request);
