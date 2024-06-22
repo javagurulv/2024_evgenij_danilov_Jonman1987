@@ -18,6 +18,9 @@ class TravelCalculatePremiumServiceImplTest {
     @Mock
     private DateTimeService dateTimeService;
 
+    @Mock
+    private TravelCalculatePremiumRequestValidator validator;
+
     @InjectMocks
     private TravelCalculatePremiumServiceImpl service;
 
@@ -25,6 +28,7 @@ class TravelCalculatePremiumServiceImplTest {
 
     @BeforeEach
     public void setUp() {
+        validator = new TravelCalculatePremiumRequestValidator();
         request = new TravelCalculatePremiumRequest("Ivan",
                 "Petrov", new Date(2023, 10, 27), new Date(2023, 10, 28));
         when(dateTimeService.calculateDaysCount(request.getAgreementDateFrom(), request.getAgreementDateTo())).thenReturn(1L);

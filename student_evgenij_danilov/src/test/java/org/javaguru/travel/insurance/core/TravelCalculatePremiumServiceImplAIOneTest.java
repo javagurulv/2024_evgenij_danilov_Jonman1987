@@ -9,7 +9,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class TravelCalculatePremiumServiceImplAIOneTest {
     private DateTimeService dateTimeService = new DateTimeService();
-    private final TravelCalculatePremiumService service = new TravelCalculatePremiumServiceImpl(dateTimeService);
+    private TravelCalculatePremiumRequestValidator validator = new TravelCalculatePremiumRequestValidator();
+    private final TravelCalculatePremiumService service = new TravelCalculatePremiumServiceImpl(dateTimeService, validator);
 
     @Test
     void testCalculatePremium() {
