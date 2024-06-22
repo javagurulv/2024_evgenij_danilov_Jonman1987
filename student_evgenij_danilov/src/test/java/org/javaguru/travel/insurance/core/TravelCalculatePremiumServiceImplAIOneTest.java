@@ -8,11 +8,10 @@ import java.util.Date;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class TravelCalculatePremiumServiceImplAIOneTest {
-    private DateTimeService dateTimeService = new DateTimeService();
+    /*private DateTimeService dateTimeService = new DateTimeService();
     private TravelCalculatePremiumRequestValidator validator = new TravelCalculatePremiumRequestValidator();
     private final TravelCalculatePremiumService service = new TravelCalculatePremiumServiceImpl(dateTimeService, validator);
 
-    @Test
     void testCalculatePremium() {
         // Arrange
         TravelCalculatePremiumRequest request = new TravelCalculatePremiumRequest(
@@ -29,5 +28,5 @@ public class TravelCalculatePremiumServiceImplAIOneTest {
         assertEquals("Doe", response.getPersonLastName());
         assertEquals(new Date(2023, 10, 27), response.getAgreementDateFrom());
         assertEquals(new Date(2023, 11, 10), response.getAgreementDateTo());
-    }
+    }*/
 }

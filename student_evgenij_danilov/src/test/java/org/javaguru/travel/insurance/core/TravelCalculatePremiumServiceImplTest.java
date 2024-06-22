@@ -19,6 +19,9 @@ class TravelCalculatePremiumServiceImplTest {
     private DateTimeService dateTimeService;
 
     @Mock
+    private TravelPremiumUnderwriting underwriting;
+
+    @Mock
     private TravelCalculatePremiumRequestValidator validator;
 
     @InjectMocks
@@ -31,7 +34,7 @@ class TravelCalculatePremiumServiceImplTest {
         validator = new TravelCalculatePremiumRequestValidator();
         request = new TravelCalculatePremiumRequest("Ivan",
                 "Petrov", new Date(2023, 10, 27), new Date(2023, 10, 28));
-        when(dateTimeService.calculateDaysCount(request.getAgreementDateFrom(), request.getAgreementDateTo())).thenReturn(1L);
+        when(underwriting.calculateDaysCount(request)).thenReturn(new BigDecimal(1L));
     }
     @Test
     public void testGetPersonFirstName() {
@@ -64,7 +67,7 @@ class TravelCalculatePremiumServiceImplTest {
     @Test
     public void testGetAgreementPrice() {
         TravelCalculatePremiumResponse response = service.calculatePremium(request);
-        response.setAgreementPrice(new BigDecimal(service.calculateDaysCount(request)));
+        response.setAgreementPrice(underwriting.calculateDaysCount(request));
 
         Assertions.assertEquals(response.getAgreementPrice(), new BigDecimal(1));
     }

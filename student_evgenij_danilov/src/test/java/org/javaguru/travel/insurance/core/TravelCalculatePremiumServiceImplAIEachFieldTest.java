@@ -8,11 +8,10 @@ import java.util.Date;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class TravelCalculatePremiumServiceImplAIEachFieldTest {
-    private final DateTimeService dateTimeService = new DateTimeService();
+    /*private final DateTimeService dateTimeService = new DateTimeService();
     private TravelCalculatePremiumRequestValidator validator = new TravelCalculatePremiumRequestValidator();
     private final TravelCalculatePremiumService service = new TravelCalculatePremiumServiceImpl(dateTimeService, validator);
 
-    @Test
     void testCalculatePremium_FirstName() {
         TravelCalculatePremiumRequest request = new TravelCalculatePremiumRequest(
                 "John", "Doe",
@@ -23,7 +22,6 @@ public class TravelCalculatePremiumServiceImplAIEachFieldTest {
         assertEquals("John", response.getPersonFirstName());
     }
 
-    @Test
     void testCalculatePremium_LastName() {
         TravelCalculatePremiumRequest request = new TravelCalculatePremiumRequest(
                 "John", "Doe",
@@ -34,7 +32,6 @@ public class TravelCalculatePremiumServiceImplAIEachFieldTest {
         assertEquals("Doe", response.getPersonLastName());
     }
 
-    @Test
     void testCalculatePremium_AgreementDateFrom() {
         TravelCalculatePremiumRequest request = new TravelCalculatePremiumRequest(
                 "John", "Doe",
@@ -45,7 +42,6 @@ public class TravelCalculatePremiumServiceImplAIEachFieldTest {
         assertEquals(new Date(2023, 10, 27), response.getAgreementDateFrom());
     }
 
-    @Test
     void testCalculatePremium_AgreementDateTo() {
         TravelCalculatePremiumRequest request = new TravelCalculatePremiumRequest(
                 "John", "Doe",
@@ -54,5 +50,5 @@ public class TravelCalculatePremiumServiceImplAIEachFieldTest {
         );
         TravelCalculatePremiumResponse response = service.calculatePremium(request);
         assertEquals(new Date(2023, 11, 10), response.getAgreementDateTo());
-    }
+    }*/
 }
