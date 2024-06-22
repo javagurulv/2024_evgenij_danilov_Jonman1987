@@ -20,10 +20,19 @@ class TravelCalculatePremiumServiceImpl implements TravelCalculatePremiumService
     @Override
     public TravelCalculatePremiumResponse calculatePremium(TravelCalculatePremiumRequest request) {
         List<ValidationError> errors = requestValidator.validate(request);
+
         if (!errors.isEmpty()) {
-            return new TravelCalculatePremiumResponse(errors);
+            return buildResponse(errors);
         }
 
+        return buildResponse(request);
+    }
+
+    private TravelCalculatePremiumResponse buildResponse(List<ValidationError> errors) {
+        return new TravelCalculatePremiumResponse(errors);
+    }
+
+    private TravelCalculatePremiumResponse buildResponse(TravelCalculatePremiumRequest request) {
         TravelCalculatePremiumResponse response = new TravelCalculatePremiumResponse();
 
         response.setAgreementDateFrom(request.getAgreementDateFrom());
@@ -36,7 +45,7 @@ class TravelCalculatePremiumServiceImpl implements TravelCalculatePremiumService
         return response;
     }
 
-    public long calculateDaysCount(TravelCalculatePremiumRequest request){
+    public long calculateDaysCount(TravelCalculatePremiumRequest request) {
         return dateTimeService.calculateDaysCount(request.getAgreementDateFrom(), request.getAgreementDateTo());
     }
 }
