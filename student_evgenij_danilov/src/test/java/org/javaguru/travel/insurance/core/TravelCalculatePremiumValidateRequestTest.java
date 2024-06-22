@@ -161,4 +161,33 @@ public class TravelCalculatePremiumValidateRequestTest {
 
         Assertions.assertTrue(errors.isEmpty());
     }
+
+    @Test
+    public void agreementDateToValidateValueFalse(){
+        request = mock(TravelCalculatePremiumRequest.class);
+        when(request.getPersonFirstName()).thenReturn("Ivan");
+        when(request.getPersonLastName()).thenReturn("Petrov");
+        when(request.getAgreementDateFrom()).thenReturn(new Date(2023, 10, 28));
+        when(request.getAgreementDateTo()).thenReturn(new Date(2023, 10, 27));
+
+        validator = new TravelCalculatePremiumRequestValidator();
+        List<ValidationError> errors = validator.validate(request);
+
+        Assertions.assertEquals(errors.getFirst().getField(), "agreementDateTo");
+        Assertions.assertEquals(errors.getFirst().getMessage(), "Must be greater than agreementDateFrom!");
+    }
+
+    @Test
+    public void agreementDateToValidateValueTrue(){
+        request = mock(TravelCalculatePremiumRequest.class);
+        when(request.getPersonFirstName()).thenReturn("Ivan");
+        when(request.getPersonLastName()).thenReturn("Petrov");
+        when(request.getAgreementDateFrom()).thenReturn(new Date(2023, 10, 27));
+        when(request.getAgreementDateTo()).thenReturn(new Date(2023, 10, 28));
+
+        validator = new TravelCalculatePremiumRequestValidator();
+        List<ValidationError> errors = validator.validate(request);
+
+        Assertions.assertTrue(errors.isEmpty());
+    }
 }
